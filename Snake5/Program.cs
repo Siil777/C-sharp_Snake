@@ -103,7 +103,7 @@ namespace Snake3
                 int count = 0;
                 foreach (string line in lines)
                 {
-                    if (count < 10) // display only the first 3 results
+                    if (count < 7) // display only the first 3 results
                     {
                         WriteText(line, xOffset, yOffset++);
                         count++;
