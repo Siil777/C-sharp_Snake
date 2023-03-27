@@ -9,8 +9,15 @@ namespace Snake3
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter your name: ");
+             Console.Write("Enter your name: ");
             string name = Console.ReadLine();
+
+            while (name.Length < 3)
+            {
+                Console.WriteLine("Name must be at least 3 letters long. Please try again.");
+                Console.Write("Enter your name: ");
+                name = Console.ReadLine();
+            }
             Player player = new Player { Name = name, Score = 0 };
 
             Console.Clear();
