@@ -1,0 +1,27 @@
+1.Был создан класс Player, для отоброжения имени игрока и набраных очков с последующим их
+сохронением в txt фаил.
+В этом классе 3 свойства Name,Score  и функция Draw()
+1.1 Метод Draw() принимает два параметра int xOffset и yOffset 
+которые определяют горизонтальное и вертикальное положение
+Имя и баллы отображаются с помощью метода Console.Write()
+
+public class Player
+public string Name { get; set; }
+get и set - это средства доступа
+
+ метод get вызывается при запросе свойства класса Player если у нас есть экземпляр класса Player
+ то имя игрока мы получаем написав player.Name, и выводим имя с помощью задавая координаты
+ x,y Draw()
+
+ Пример:
+ Console.Write("Enter your name: ");
+            string name = Console.ReadLine();
+            Player player = new Player { Name = name, Score = 0 };
+            player.Draw(2, 1);
+
+Пример:
+    Player player = new Player();
+    player.Name = "John";
+
+    В этом случае set имеет значение John, затем set передает это значение переменной 
+    в которой оно хранится, И затем метод get его получает.
