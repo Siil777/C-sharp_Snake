@@ -28,8 +28,8 @@ namespace Snake5
         }
         public Point CreatFood()
         {
-            int x = random.Next(2, mapWidth - 2);
-            int y = random.Next(2, mapHeight - 2);
+            int x = random.Next(2, mapWidth);
+            int y = random.Next(2, mapHeight);
             return new Point(x, y, sym);
         }
 

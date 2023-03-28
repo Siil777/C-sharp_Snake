@@ -2,14 +2,34 @@ using Snake5;
 using System;
 using System.IO;
 using System.Threading;
+using System.Media;
+using NAudio.Wave;
 
 namespace Snake3
 {
     class program
     {
+        
+
         static void Main(string[] args)
         {
-             Console.Write("Enter your name: ");
+
+            
+            Sound gameOverSound = new Sound(@"C:\Users\opilane\Source\Repos\C-sharp_Snake\Snake5\Gameover.mp3");
+            Sound Bgmusic = new Sound(@"C:\Users\opilane\Source\Repos\C-sharp_Snake\Snake5\Snake.mp3");
+            Bgmusic.Play();
+            
+            
+            
+            
+            
+            
+
+
+
+
+
+            Console.Write("Enter your name: ");
             string name = Console.ReadLine();
 
             while (name.Length < 3)
@@ -25,6 +45,7 @@ namespace Snake3
             Console.SetWindowSize(79, 25);
             Console.SetBufferSize(79, 25);
             player.Draw(2, 1);
+           
 
 
 
@@ -44,27 +65,40 @@ namespace Snake3
             {
                 if (walls.IsHit(snake) || snake.IsHitTail())
                 {
+                    gameOverSound.Play();
+                    Bgmusic.Stop();
                     //баллы записываются в копию листа PlayerResult, работает только с указанием полного пути
-                    using (StreamWriter writer = new StreamWriter("C:\\Users\\admin\\Desktop\\C#\\Snake5\\Snake5\\PlayResult", true))
+                    using (StreamWriter writer = new StreamWriter(@"C:\Users\opilane\Source\Repos\C-sharp_Snake\Snake5\PlayResult", true))
                     {
                         writer.WriteLine("Player name: " + player.Name);
                         writer.WriteLine("Score: " + player.Score);
                     }
                     break;
                 }
+
                 if (snake.Eat(food))
                 {
+
+                    
                     food = foodCreator.CreatFood();
+                    
                     food.Draw();
+                    
                     player.Score++;
+                    
                     player.Draw(2, 1);
+                    Sound eatSound = new Sound(@"C:\Users\opilane\Source\Repos\C-sharp_Snake\Snake5\aple.mp3");
+                    eatSound.Play();
 
 
                 }
+          
+
                 else
                 {
                     snake.Move();
                 }
+               
 
                 Thread.Sleep(100);
                 if (Console.KeyAvailable)
@@ -95,7 +129,7 @@ namespace Snake3
             yOffset++;
 
             // Read the data from the file and display the top 3 results on the console
-            string fileName = "C:\\Users\\admin\\Desktop\\C#\\Snake5\\Snake5\\PlayResult";
+            string fileName = "C:\\Users\\opilane\\Source\\Repos\\C-sharp_Snake\\Snake5\\PlayResult";
             if (File.Exists(fileName))
             {
                 //Выводим на Экран только то количиство строк которое не нарушает работу SetCursorPoition
@@ -126,4 +160,9 @@ namespace Snake3
             Console.WriteLine(text);
         }
     }
+   
+
+        
 }
+
+       
