@@ -11,9 +11,9 @@ namespace Snake3
     {        
         static void Main(string[] args)
         {
-            //Sound gameOverSound = new Sound(@"C:\Users\admin\source\repos\C-sharp_Snake\Snake5\Snake5\Gameover.mp3");
-            //Sound Bgmusic = new Sound(@"C:\Users\admin\source\repos\C-sharp_Snake\Snake5\Snake5\Snake.mp3");
-            //Bgmusic.Play();
+            Sound gameOverSound = new Sound(@"C:\Users\admin\source\repos\C-sharp_Snake\Snake5\Snake5\Gameover.mp3");
+            Sound Bgmusic = new Sound(@"C:\Users\admin\source\repos\C-sharp_Snake\Snake5\Snake5\Snake.mp3");
+            Bgmusic.Play();
             Console.Write("Enter your name: ");
             string name = Console.ReadLine();
 
@@ -55,8 +55,8 @@ namespace Snake3
                 //bool проверка, связь с Walls,Snake,Figure method IsHit(figure),snake.IsHitTail())
                 if (walls.IsHit(snake) || obstacle2.IsHit(snake) || obstacle1.IsHit(snake) || obstacle.IsHit(snake) || snake.IsHitTail())
                 {
-                    //gameOverSound.Play();
-                    //Bgmusic.Stop();
+                    gameOverSound.Play();
+                    Bgmusic.Stop();
                     //Ð±Ð°Ð»Ð»Ñ‹ Ð·Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÑŽÑ‚ÑÑ Ð² ÐºÐ¾Ð¿Ð¸ÑŽ Ð»Ð¸ÑÑ‚Ð° PlayerResult, Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ ÑƒÐºÐ°Ð·Ð°Ð½Ð¸ÐµÐ¼ Ð¿Ð¾Ð»Ð½Ð¾Ð³Ð¾ Ð¿ÑƒÑ‚Ð¸
                     using (StreamWriter writer = new StreamWriter(@"C:\Users\admin\source\repos\C-sharp_Snake\Snake5\Snake5\PlayResult", true))
                     {
@@ -93,8 +93,8 @@ namespace Snake3
                     player.Score++;
 
                     player.Draw(2, 1);
-                    //Sound eatSound = new Sound(@"C:\Users\admin\source\repos\C-sharp_Snake\Snake5\Snake5\aple.mp3");
-                    //eatSound.Play();
+                    Sound eatSound = new Sound(@"C:\Users\admin\source\repos\C-sharp_Snake\Snake5\Snake5\aple.mp3");
+                    eatSound.Play();
                     if (foodEaten == 1)
                     {
                         obstacle = new Obstacles(20, 40);
