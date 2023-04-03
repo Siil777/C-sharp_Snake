@@ -8,7 +8,8 @@ namespace Snake5
 {
     class VerticalLine:figure
     {
-        
+        //List<Point> pList; теперь лист наследуется от фигуры
+
         public VerticalLine(int yUp, int yDown, int x, char sym)
         {
             pList = new List<Point>();

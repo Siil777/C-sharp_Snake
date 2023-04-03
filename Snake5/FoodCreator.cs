@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -16,20 +16,24 @@ namespace Snake5
         char sym;
 
         Random random = new Random();
-        // габариты карты и символ
-        //переменные в качестве аргумента
-
+        // Конструктор,ширина,высота и символ в качетсве еды
         public FoodCreator(int mapWidth, int mapHeight, char sym)
         {
+            //this это переменная непосредственно которая задана в начале классе class FoodCreator
+            //без this это переменная из конструктора
+            //переменные this значение по умолчнаю, без this в качестве аргумента
             this.mapWidth = mapWidth;
             this.mapHeight = mapHeight;
             this.sym = sym;
 
         }
+        // Через функцию CreatFood генерируем произвольные координаты в пределах карты указаных в
+        // конструкторе  public FoodCreator(int mapWidth, int mapHeight, char sym)
         public Point CreatFood()
         {
             int x = random.Next(2, mapWidth);
             int y = random.Next(2, mapHeight);
+            // и создаем точку с этими координатами
             return new Point(x, y, sym);
         }
 

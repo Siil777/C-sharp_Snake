@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake5
 {
-    class Snake:figure
+    class Snake : figure
     {
         // Класс snake тпереь хранит направление
         Direction direction;
@@ -31,30 +31,47 @@ namespace Snake5
 
         internal void Move()
         {
-            // Method First give back the fisrt element of a list
+            //Метод First возврощает первый элемент списка
+
             Point tail = pList.First();
+            // точка котрорая соответсвовала хвосту она больше не пренаджеит данной змейке
+            //поэтому Remove()
             pList.Remove(tail);
+            //что бы определить куда будет двигаться голова нужен специальный метод
+            //Переменная head заполнится значением которое вернет функцию GetNextPoint
             Point head = GetNextPoint();
             pList.Add(head);
 
             tail.Clear();
             head.Draw();
-            //throw new NotImplementedException();
+            
         }
+        //функция вычисляет в какой точке оказывается змейка в следующий момент
         public Point GetNextPoint()
         {
+            //текущая позиция головы до того как змейка перемистилась, через метод Last();
             Point head = pList.Last();
+            // Затем создается точка которая является копией предыдущего положения головы
             Point nextPoint = new Point(head);
+            //и теперь точка сдвигается по направлению direction
+            //напрвление которое сохранено в переменной записаной под class Snake:Figure
             nextPoint.Move(1, direction);
             return nextPoint;
+
         }
+   
         // создания функции если змейка сталкнулась с хваостом
         internal bool IsHitTail()
         {
+            //Сначала получаем координаты точки головы
             var head = pList.Last();
+            //проверка есть ли совподение между точкой головы и точками всего оставшегося
+            //хвоста
+            //перебераем все точки от хвоста 0-я позиция, до точки предшествующей голове pList.Count-2
             for (int i = 0; i < pList.Count - 2; i++)
             {
-                // есть ли пересечение головы с точкой хваоста
+                //есть ли пересечения точки головы с точкой i = 0, то-есть
+                // pList[i] i=0 хвост
                 if (head.IsHit(pList[i]))
                     return true;
 
@@ -75,22 +92,23 @@ namespace Snake5
         }
         internal bool Eat(Point food)
         {
-            //если точка где окажеться змейка на следующем ходу совподает с едой то 
-            //змейка ест
+
+            //получаем точку соответсвующую соедующему положению головы змейки
+            //если точка где змейка окажется на следующем ходу совподает по координатам с едой..
             Point head = GetNextPoint();
             if (head.IsHit(food))
             {
-                // Змейка растет,символ меняется
+                //меняется символ потому-что теперь это часть змейки
                 food.sym = head.sym;
+                // добовляем символ в список
                 pList.Add(food);
                 return true;
 
             }
-            else
-
                 return false;
 
         }
+    
 
     }
 }

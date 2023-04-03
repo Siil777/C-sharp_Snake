@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -21,10 +21,15 @@ namespace Snake5
             }
         }
         // здесь принмается фигура
+        //отсюда вызываем реализацию метода IsHit для Walls
         internal bool IsHit(figure figure)
         {
+            //Проверка пересечения точек, перебераем все точки в figure
             foreach (var p in pList)
             {
+                //спраштваем figure которую мы передали в качестве аргумента если пересекается 
+                //ли с какой либо точкой
+                //IsHit в качестве аргумента (p) вызываем private bool IsHit(Point point)
                 if (figure.IsHit(p))
                     return true;
 
@@ -33,6 +38,9 @@ namespace Snake5
             return false;
         }
         //здесь точка
+        //одна из особенностей полиморфизма две функции IsHit, но принимают разные
+        // аргументы
+        //Здесь принимаем точку
         private bool IsHit(Point point)
         {
             foreach (var p in pList)
